@@ -1,38 +1,81 @@
-.App {
-  text-align: center;
+:root {
+  --primary: #e50914;
+  --primary-dark: #b2070f;
+  --black: #141414;
+  --black-light: #000000;
+  --gray: #999;
+  --white: #fff;
+  --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  --menu-width: 60px;
+  --menu-width-open: 250px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
-.App-header {
-  background-color: #282c34;
+body {
+  font-family: 'Netflix Sans', 'Helvetica Neue', Arial, sans-serif;
+  background: var(--black);
+  color: var(--white);
+  overflow-x: hidden;
+  line-height: 1.4;
+}
+
+.app {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: relative;
+}
+
+
+button, a, .movie-card, .menu li {
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--black-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.loading {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  height: 100vh;
+  font-size: 24px;
+  animation: fadeIn 0.5s ease;
+  margin-left: var(--menu-width);
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.menu.open ~ .loading {
+  margin-left: var(--menu-width-open);
 }
